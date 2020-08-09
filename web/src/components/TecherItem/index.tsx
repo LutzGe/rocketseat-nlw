@@ -1,32 +1,41 @@
 import React from 'react';
 
-import AsmonImage from '../../assets/images/Asmongold.jpg'
 import whatsIcon from '../../assets/images/icons/whatsapp.svg'
 import './styles.css'
 
-function TeacherItem() {
+export interface Teacher {
+    id: number,
+    name: string,
+    avatar: string,
+    whatsapp: string,
+    bio: string,
+    subject: string,
+    cost: number
+}
+
+interface TeacherItemProps {
+    teacher: Teacher
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, ...rest}) => {
     return (
         <article className="teacher-item">
         <header>
-            <img src={AsmonImage} alt="Asmongold"/>
+            <img src={teacher.avatar} alt="Avatar"/>
             <div>
-                <strong>Asmongold</strong>
-                <span>World of Warcraft</span>
+                <strong>{teacher.name}</strong>
+                <span>{teacher.subject}</span>
             </div>
         </header>
 
         <p>
-            uihofgdhufiodsfdfuighduis fhuisodgf dusugfdshuguhfidsg
-            <br/><br/>
-            husfdihu8gfdsgfdhsugdfshuiopgfd\shusfdihu8gfdsgfdhsugdfshu
-            husfdihu8gfdsgfdhsugdfshuiopgfd\shusfdihu8gfdsgfdhsugdfshuiopgfd
-            \sihu8gfdsgfdhsugdfshuiopgfd\s
+            {teacher.bio}
         </p>
 
         <footer>
             <p>
                 Preço/hora
-                <strong>Muita grana</strong>
+                <strong>{teacher.cost}</strong>
             </p>
             <button type="button">
                 <img src={whatsIcon} alt="WhatsApp"/>
