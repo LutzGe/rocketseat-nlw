@@ -7,6 +7,7 @@ import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 
 import './styles.css'
 import { Link } from 'react-router-dom'
+import Navigation from '../../components/Navigation'
 
 function Login(){
 
@@ -23,11 +24,13 @@ function Login(){
   const [button, setButton] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [remember, setRemember] = useState(false)
 
   function handleValidation(){}
 
   return (
     <div id="page-login">
+      <Navigation />
       <main id="main-login">
         <section className="login-logo">
           <div className="logo-content">
@@ -55,6 +58,7 @@ function Login(){
                   <Input 
                     name="password"
                     placeholder="Senha"
+                    password
                     required
                     type="password"
                     className="psswrd"
@@ -68,7 +72,14 @@ function Login(){
               </form>
               <div className="check">
                 <div>
-                  <input className="check" type="checkbox" name="remember" id="remember"/>
+                  <input 
+                    className="check" 
+                    type="checkbox" 
+                    name="remember" 
+                    id="remember"
+                    checked={remember}
+                    onChange={e =>{ setRemember(!remember) } }
+                  />
                   <label htmlFor="check">Lembrar-me</label>
                 </div>
                 <Link to="/forgot" >Esqueci minha senha</Link>

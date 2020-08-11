@@ -117,7 +117,7 @@
 }
 
 .form-input .button:disabled {
-    background-color: var(--color-text-complement);
+    background-color: var(--color-disabled);
 }
 
 

@@ -16,7 +16,7 @@
     position: absolute;
     width: 100%;
     top: 1.8rem;
-    margin-left: 1.5rem;
+    padding-left: 1.5rem;
     transition: 0.3s;
     font: 1.4rem Poppins;
 }
@@ -52,4 +52,26 @@
     left: 1.6rem;
     right: 1.6rem;
     bottom: 0;
+}
+
+.olho {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 1.6rem;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    /* display: flex; */
+}
+
+button:focus {
+    outline: none;
+}
+
+.olho img {
+    display: flex;
+
+    height: 2.4rem;
 }
