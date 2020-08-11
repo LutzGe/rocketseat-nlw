@@ -1,1 +1,3 @@
-./.vscode*
+./NLW.session.sql
+./.vscode
+./TODOS.md
