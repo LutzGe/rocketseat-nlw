@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import Input from '../../components/Input'
 import Stack from '../../components/Stack'
 // import background from '../../assets/images/give-classes-background@3x.png'
@@ -8,49 +8,34 @@ import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 import './styles.css'
 import { Link } from 'react-router-dom'
 
-function Login(){
-
-  
-  function changeButton(s1: string, s2: string) {
-    if (!s1 || !s2){
-      setButton(false)
-    }
-    else {
-      setButton(true)
-    }
+function Signin(){
+  function checkEmail(){
+    
   }
 
-  const [button, setButton] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  function handleFormValidation() {
 
-  function handleValidation(){}
+  }
 
   return (
     <div id="page-login">
       <main id="main-login">
-        <section className="login-logo">
-          <div className="logo-content">
-            <img src={logoImg} alt="Logo"/>
-            <h2>Sua plataforma de estudos online</h2>
-          </div>
-        </section>
         <section className="login">
           <div className="login-form">
-            <h2>Fazer o Login</h2>
+            <h2>Cadastro</h2>
+            <p>
+                Preencha os dados abaixo para começar
+            </p>
             <div className="form-input">
-              <form onSubmit={handleValidation}>
+              <form onSubmit={handleFormValidation}>
                 <Stack>
                   <Input 
                     name="email" 
                     placeholder="E-mail"
                     required
                     className="email"
-                    value={email}
-                    onChange={(e) => { 
-                      setEmail(e.target.value) 
-                      changeButton(email, password)
-                    }} 
+                    // value={email}
+                    // onChange={(e) => { setEmail(e.target.value) }} 
                   />
                   <Input 
                     name="password"
@@ -58,11 +43,8 @@ function Login(){
                     required
                     type="password"
                     className="psswrd"
-                    value={password}
-                    onChange={(e) => { 
-                      setPassword(e.target.value) 
-                      changeButton(email, password)
-                    }}
+                    // value={password}
+                    // onChange={(e) => { setPassword(e.target.value) }}
                   />
                 </Stack>
               </form>
@@ -74,7 +56,7 @@ function Login(){
                 <Link to="/forgot" >Esqueci minha senha</Link>
               </div>
               <button 
-                disabled={!button}
+                // onChange={}
                 className="button" 
                 type="submit">Entrar</button>
             </div>
@@ -94,10 +76,16 @@ function Login(){
             </div>
           </footer>
         </section>
+        <section className="login-logo">
+          <div className="logo-content">
+            <img src={logoImg} alt="Logo"/>
+            <h2>Sua plataforma de estudos online</h2>
+          </div>
+        </section>
       </main>
     </div>
   )
 }
 
 
-export default Login
+export default Signin
