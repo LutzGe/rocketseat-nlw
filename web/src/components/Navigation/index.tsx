@@ -6,10 +6,14 @@ import logoImg from '../../assets/images/logo.svg'
 
 import './styles.css'
 
-function Navigation() {
+interface NavigationProps {
+    to?: string
+}
+
+const Navigation: React.FC<NavigationProps> = ({ to }) => {
     return (
         <div className="top-bar-container">
-            <Link to="/">
+            <Link to={to ? to : "/"}>
                 <img src={backIcon} alt="Voltar"/>
             </Link>
             <img src={logoImg} alt="Proffy"/>

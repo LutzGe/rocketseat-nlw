@@ -13,20 +13,23 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({ name, label, placeholder, password, ...rest}) => {
     const [olho, setOlho] = useState(false)
-    const [pwrd, setPwrd] = useState('password')
+    const [pwrd, setPassword] = useState(!password)
     const [image, setImage] = useState(olhoAberto)
 
     useEffect(() =>{
-      setPwrd(olho ? 'text' : 'password')
+      setPassword(!pwrd)
       setImage(olho ? olhoFechado : olhoAberto)
     }, [olho])
-
-    const type = rest.type
 
     return (
         <div className="input-block">
             { label && <label className="label" htmlFor={name}>{label}</label>}
-            <input {...rest} type={pwrd} id={name} />
+            
+            <input 
+              type={pwrd ? 'password' : 'text'}
+              {...rest}
+              id={name}
+            />
             { placeholder && <label className="placeholder" htmlFor={name}><span>{placeholder}</span></label>}
             {/* Adiciona o olhinho se o campo for de */}
             { password &&
@@ -34,7 +37,7 @@ const Input: React.FC<InputProps> = ({ name, label, placeholder, password, ...re
                   type="button"
                   className="olho" 
                   onClick={e => { setOlho(!olho)}}>
-                  <img src={image} className={pwrd} alt="olho"/>
+                  <img src={image} alt="olho"/>
                 </button>
             }
         </div>

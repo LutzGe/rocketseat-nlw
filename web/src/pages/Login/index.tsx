@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, FormEvent } from 'react'
 import Input from '../../components/Input'
 import Stack from '../../components/Stack'
 // import background from '../../assets/images/give-classes-background@3x.png'
@@ -8,6 +8,7 @@ import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 import './styles.css'
 import { Link } from 'react-router-dom'
 import Navigation from '../../components/Navigation'
+import api from '../../services/api'
 
 function Login(){
 
@@ -26,7 +27,9 @@ function Login(){
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
-  function handleValidation(){}
+  function handleValidation(e: FormEvent){
+      // api.post('/login')
+  }
 
   return (
     <div id="page-login">
@@ -60,7 +63,6 @@ function Login(){
                     placeholder="Senha"
                     password
                     required
-                    type="password"
                     className="psswrd"
                     value={password}
                     onChange={(e) => { 
@@ -86,7 +88,7 @@ function Login(){
               </div>
               <button 
                 disabled={!button}
-                className="button" 
+                className="button"
                 type="submit">Entrar</button>
             </div>
           </div>

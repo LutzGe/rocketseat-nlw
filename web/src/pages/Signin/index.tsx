@@ -6,6 +6,7 @@ import logoImg from '../../assets/images/logo.svg'
 
 import './styles.css'
 import Navigation from '../../components/Navigation'
+import api from '../../services/api'
 
 function Signin(){
   const [name, setName] = useState('')
@@ -13,11 +14,13 @@ function Signin(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function handleValidation(){}
+  function handleValidation(){
+    // api.post('/user')
+  }
 
   return (
     <main id="main-login">
-      <Navigation />
+      <Navigation to="/login"/>
       <section className="login">
         <div className="login-form">
           <h2>Cadastro</h2>
@@ -55,7 +58,7 @@ function Signin(){
                   name="password"
                   placeholder="Senha"
                   required
-                  type="password"
+                  password
                   className="psswrd"
                   value={password}
                   onChange={(e) => { setPassword(e.target.value) }}
