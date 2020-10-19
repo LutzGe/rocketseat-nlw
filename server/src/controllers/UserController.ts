@@ -31,7 +31,6 @@ export default class UserController {
         const trx = await db.transaction()
         try {
     
-    
             await trx('users').insert({
                 name,
                 login,

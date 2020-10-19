@@ -7,7 +7,7 @@ export async function up(knex: Knex) {
         table.integer('user_id')
             .notNullable()
             .references('id')
-            .inTable('class')
+            .inTable('users')
             .onDelete('CASCADE')
 
         table.timestamp('created_at')

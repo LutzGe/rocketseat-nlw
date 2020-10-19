@@ -2,11 +2,15 @@ import knex from 'knex'
 import path from 'path'
 
 const db = knex({
-    client: 'sqlite3',
+    client: 'postgres',
     connection: {
-        filename: path.resolve(__dirname, 'database.sqlite')
-    },
-    useNullAsDefault: true,
-})
+      host: '172.19.0.2',
+      port: 5432,
+      user : 'postgres',
+      password : 'postgres',
+      database : 'proffy'
+    }
+  }
+)
 
 export default db
