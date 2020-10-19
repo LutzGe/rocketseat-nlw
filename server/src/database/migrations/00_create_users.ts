@@ -3,10 +3,19 @@ import Knex from 'knex'
 export async function up(knex: Knex) {
     return knex.schema.createTable('users', table => {
         table.increments('id').primary()
+        table.string('login').notNullable()
         table.string('name').notNullable()
-        table.string('bio').notNullable()
-        table.string('avatar').notNullable()
-        table.string('whatsapp').notNullable()
+        table.string('email')
+        table.string('bio')
+        table.string('avatar')
+        table.string('whatsapp')
+
+        table.integer('role')
+            .references('id')
+            .inTable('roles')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
+            .defaultTo(3)
     })
 }
 
