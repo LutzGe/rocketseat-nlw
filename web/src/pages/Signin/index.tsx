@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Input from '../../components/Input'
+import PasswordInput from '../../components/PasswordInput'
 import Stack from '../../components/Stack'
 
 import logoImg from '../../assets/images/logo.svg'
@@ -33,6 +34,7 @@ function Signin(){
               <Input 
                   name="name"
                   placeholder="Nome"
+                  type="text"
                   required
                   className="name"
                   value={name}
@@ -41,6 +43,7 @@ function Signin(){
                 <Input 
                   name="sobrenome"
                   placeholder="Sobrenome"
+                  type="text"
                   required
                   className="lastname"
                   value={lastname}
@@ -49,16 +52,17 @@ function Signin(){
                 <Input 
                   name="email" 
                   placeholder="E-mail"
+                  type="text"
                   required
                   className="email"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value) }} 
                 />
-                <Input 
+                <PasswordInput 
                   name="password"
                   placeholder="Senha"
+                  type="password"
                   required
-                  password
                   className="psswrd"
                   value={password}
                   onChange={(e) => { setPassword(e.target.value) }}

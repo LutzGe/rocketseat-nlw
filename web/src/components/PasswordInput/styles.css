@@ -4,10 +4,6 @@
 
 }
 
-.input-block + .input-block {
-    margin-top: 1.4rem;
-}
-
 .input-block label {
     font-size: 1.4rem;
 }
@@ -53,4 +49,25 @@
     left: 1.6rem;
     right: 1.6rem;
     bottom: 0;
+}
+.olho {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 1.6rem;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    /* display: flex; */
+}
+
+button:focus {
+    outline: none;
+}
+
+.olho img {
+    display: flex;
+
+    height: 2.4rem;
 }
