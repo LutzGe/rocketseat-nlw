@@ -11,6 +11,25 @@
 .input-block label {
     font-size: 1.4rem;
 }
+.input-block .placeholder {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 1.8rem;
+    padding-left: 1.5rem;
+    transition: 0.3s;
+    font: 1.4rem Poppins;
+}
+
+.input-block input:focus + .placeholder,
+.input-block input:valid + .placeholder {
+    font-size: 1.1rem;
+    margin: 0;
+    padding-left: 1.6rem;
+    top: 0.8rem ;
+    color: var(--color-text-complement);
+}
+
 
 .input-block input { 
     width: 100%;
@@ -21,10 +40,10 @@
     border: 1px solid var(--color-line-in-white);
     outline: 0;
     padding: 0 1.6rem;
-    font: 1.6rem Archivo;
+    font: 1.4rem Poppins;
 }
 
-.input-block:focus-within::after{
+.input-block:focus-within::after {
     width: calc(100% - 3.2rem);
     height: 2px;
     content: '';

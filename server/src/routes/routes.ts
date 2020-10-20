@@ -1,7 +1,6 @@
-import express, { response } from 'express'
+import express from 'express'
 import ClassesController from '../controllers/ClassesController'
 import ConnectionsController from '../controllers/ConnectionsController'
-import AuthController from '../controllers/AuthController'
 import UserController from '../controllers/UserController'
 import RoleController from '../controllers/RoleController'
 // import { checkJwt } from "../middlewares/checkJwt";
@@ -10,7 +9,6 @@ import RoleController from '../controllers/RoleController'
 const routes = express.Router()
 const classController = new ClassesController()
 const connectionsController = new ConnectionsController()
-const authController = new AuthController()
 const userController = new UserController()
 const roleController = new RoleController()
 
@@ -32,15 +30,6 @@ routes.post('/edit-role', roleController.edit)
 
 routes.get('/show-role', roleController.index)
 routes.get('/all-roles', roleController.all)
-
-// USERS
-routes.get('/user', userController.index)
-routes.post('/user', userController.create)
-routes.post('/edit-user', userController.edit)
-
-// AUTH
-routes.post("/login", authController.login)
-
 
 routes.post('/classes',
     // [checkJwt, checkRole([2])], <= BOTAR ONDE PRECISAR AUTH
