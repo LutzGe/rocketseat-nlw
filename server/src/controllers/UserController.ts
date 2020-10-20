@@ -60,18 +60,33 @@ export default class UserController {
         const {
             id,
             name,
+            login,
             email,
             bio,
             avatar,
             whatsapp,
             role   
         } = req.body
-        
+
+        if (!id && !login ) {
+            return res.status(400).send({
+                error: 'Missing necessary information for user update'
+            })
+        }
         // Pega os dados da role que vai ser alterada
-        const oldUser = await db<User>('users').select('*').where('id', '=', id)
+        let query: Knex.QueryBuilder = db<User>('users')
+        if (id) {
+            query.where('id', '=', id)
+        }
+
+        else if (login) {
+            query.where('login', 'ilike', `%${ login }%`)
+        }
+        
+        const oldUser = await query.select('*')
 
         // Cria uma role nova
-        const newUser = oldUser.map((user: User) => {
+        const newUser = oldUser ? oldUser.map((user: User) => {
             let newUser: User = {}
 
             // Compara para ver quais tem diferença
@@ -100,12 +115,12 @@ export default class UserController {
             }
             
             return newUser
-        })
+        }) : []
         
         const trx = await db.transaction()
         try {
 
-            await trx('users').where('id', '=', id).update(newUser[0])
+            await trx('users').where('id', '=', oldUser[0].id).update(newUser[0])
 
             trx.commit()
             
