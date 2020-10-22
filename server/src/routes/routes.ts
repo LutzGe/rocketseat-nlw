@@ -19,18 +19,6 @@ const roleController = new RoleController()
 //     UserController.editUser
 //   );
 
-// 1 ADMIN
-// 2 TEACHER
-// 3 USER
-
-
-// ROLES
-routes.post('/create-role', roleController.create)
-routes.post('/edit-role', roleController.edit)
-
-routes.get('/show-role', roleController.index)
-routes.get('/all-roles', roleController.all)
-
 routes.post('/classes',
     // [checkJwt, checkRole([2])], <= BOTAR ONDE PRECISAR AUTH
     classController.create

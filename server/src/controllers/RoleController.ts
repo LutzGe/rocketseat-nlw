@@ -121,10 +121,4 @@ export default class RoleController {
 
         return res.json(roles)
     }
-
-    async all(req: Request, res: Response) {
-        const roles = await db('roles').select('*')
-
-        return res.json(roles)
-    }
 }

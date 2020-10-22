@@ -14,22 +14,25 @@ import api from '../../services/api'
 function Login(){
 
   
-  function changeButton(s1: string, s2: string) {
-    if (!s1 || !s2){
-      setButton(false)
-    }
-    else {
-      setButton(true)
-    }
+  function validateForm() {
+    return login.length > 0 && password.length > 0;
   }
 
-  const [button, setButton] = useState(false)
-  const [email, setEmail] = useState('')
+  const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
-  function handleValidation(e: FormEvent){
-      // api.post('/login')
+  async function handleValidation(e: FormEvent){
+      e.preventDefault()
+
+      const response = await api.post('/login', {
+        params: {
+          login,
+          password
+        }
+      })
+
+      console.log(response)
   }
 
   return (
@@ -49,15 +52,14 @@ function Login(){
               <form onSubmit={handleValidation}>
                 <Stack>
                   <Input 
-                    name="email" 
-                    placeholder="E-mail"
+                    name="login" 
+                    placeholder="Login"
                     type="text"
                     required
-                    className="email"
-                    value={email}
+                    className="login"
+                    value={login}
                     onChange={(e) => { 
-                      setEmail(e.target.value) 
-                      changeButton(email, password)
+                      setLogin(e.target.value) 
                     }} 
                   />
                   <PasswordInput 
@@ -67,9 +69,8 @@ function Login(){
                     required
                     className="psswrd"
                     value={password}
-                    onChange={(e) => { 
+                    onChange={ e => { 
                       setPassword(e.target.value) 
-                      changeButton(email, password)
                     }}
                   />
                 </Stack>
@@ -82,14 +83,16 @@ function Login(){
                     name="remember" 
                     id="remember"
                     checked={remember}
-                    onChange={e =>{ setRemember(!remember) } }
+                    onChange={ e => {
+                      setRemember(!remember) 
+                    }}
                   />
                   <label htmlFor="check">Lembrar-me</label>
                 </div>
                 <Link to="/forgot" >Esqueci minha senha</Link>
               </div>
               <button 
-                disabled={!button}
+                disabled={!validateForm()}
                 className="button"
                 type="submit">Entrar</button>
             </div>

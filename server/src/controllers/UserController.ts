@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Knex from 'knex';
+import bcrypt from 'bcrypt'
 
 import db from '../database/connection';
 import { Role } from './RoleController';
@@ -22,26 +23,23 @@ export default class UserController {
         const {
             name,
             login,
-            bio,
-            avatar,
-            whatsapp,
-            role            
+            password
         } = req.body
 
         const trx = await db.transaction()
         try {
-    
-            await trx('users').insert({
-                name,
-                login,
-                bio,
-                avatar,
-                whatsapp,
-                role
-            })
-    
+            const saltRounds = 10
+
+            await bcrypt.hash(password, saltRounds).then( hash => {
+                trx('users').insert({
+                    name,
+                    login,
+                    password: hash
+                }).catch(err => console.error(err.message))
+            }).catch(err => console.error(err.message))
+            
             await trx.commit()
-    
+            
             return res.status(201).send()
         } catch (error) {
             console.log(error)
