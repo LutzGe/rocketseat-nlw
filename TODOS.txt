@@ -1,0 +1,16 @@
+==> Próximo:
+TODO Fazer o JWT funcionar (checkJwt, checkRole) 
+
+==> Um dia:
+FIXME Separar as rotas do routes.js
+    -> está tudo no mesmo arquivo, separado por comentários
+    -> teria que ver como separar por pastas e organizar assim
+
+FIXME Criar volumes para o container do postgres
+
+
+==> Libs para adicionar:
+    -> helmet
+    -> compression
+    -> express-validator
+    
